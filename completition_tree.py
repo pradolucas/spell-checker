@@ -1,6 +1,5 @@
 from typing import Tuple
 
-
 class TrieNode(object):
     """
     Our trie node implementation. Very basic. but does the job
@@ -9,7 +8,7 @@ class TrieNode(object):
     def __init__(self, char: str):
         self.char = char
         self.children = []
-        # Is it the last character of the word.`
+        # Is it the last character of the word.`}
         self.word_finished = False
         # How many times this character appeared in the addition process
         self.counter = 1
@@ -52,7 +51,7 @@ def find_prefix(root, prefix: str) -> Tuple[bool, int]:
     # If the root node has no children, then return False.
     # Because it means we are trying to search in an empty trie
     if not root.children:
-        return False, 0
+        return False, None, 0
     for char in prefix:
         char_not_found = True
         # Search through all the children of the present `node`
@@ -65,19 +64,19 @@ def find_prefix(root, prefix: str) -> Tuple[bool, int]:
                 break
         # Return False anyway when we did not find a char.
         if char_not_found:
-            return False, 0
+            return False, None , 0
     # Well, we are here means we have found the prefix. Return true to indicate that
     # And also the counter of the last node. This indicates how many words have this
     # prefix
-    return True, node.counter
+    return True, node, node.counter
 
-if __name__ == "__main__":
-    root = TrieNode('*')
-    add(root, "hackathon")
-    add(root, 'hack')
+def suggestions_trie(root, prefix: str, res):
+    node = root
+    if (node.word_finished):
+        res.append(prefix)
 
-    print(find_prefix(root, 'hac'))
-    print(find_prefix(root, 'hack'))
-    print(find_prefix(root, 'hackathon'))
-    print(find_prefix(root, 'ha'))
-    print(find_prefix(root, 'hammer'))
+    for child in node.children:
+        # print(f'p+child_char: {prefix+child.char}')
+        res = suggestions_trie(child, prefix+child.char, res)
+        # print(child.char)
+    return res

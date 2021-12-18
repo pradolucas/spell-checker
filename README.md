@@ -1,12 +1,5 @@
 # Spell Checker
 
-This implementation make the use of a digital tree(trie) for word completition and text correction.
+This is a rude implementation making use of a digital tree(trie) for word completion and text correction. For comparison there is the implementation using the SpellChecker library.
 
 ---
-
-## TODO
-
-- [ ] Implement Insertion
-- [ ] Implement Deletion
-- [ ] Implement Search
-- [ ] Implement Spell checker
